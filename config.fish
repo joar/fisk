@@ -1,5 +1,3 @@
-. ~/git/virtualfish/global_requirements.fish
-. ~/git/virtualfish/virtual.fish
-. ~/git/virtualfish/auto_activation.fish
+set -e fish_greeting
 
-set -x PATH ~/local/bin $PATH
+test -e config.local.fish; and . config.local.fish
