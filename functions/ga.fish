@@ -1,3 +1,3 @@
-function ga
-	git add $argv; 
+function --wraps 'git add' ga
+	git add $argv;
 end

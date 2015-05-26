@@ -1,3 +1,3 @@
 function psfgrep
-	ps auxf | grep $argv
+	ps auxf | less -p $argv
 end
