@@ -15,6 +15,7 @@ function fish_prompt --description 'Write out the prompt'
     set -g c_user_delimiter 5555aa
     set -g c_host $c_user
     set -g c_prompt_end $c_user
+    set -g c_docker 00ffde
 
     # Configurable text
     set -g t_user_delimiter "@"
@@ -121,6 +122,13 @@ function fish_prompt --description 'Write out the prompt'
         end
     end
 
+    function get_text_docker
+        if not test "$DOCKER_MACHINE_NAME" = ""
+            concat (set_color $c_docker) "(machine: $DOCKER_MACHINE_NAME)" \
+                (set_color normal)
+        end
+    end
+
     function get_text_debug
         set -l filename (status -f)
 
@@ -147,6 +155,7 @@ function fish_prompt --description 'Write out the prompt'
         (concat \
             (pad_str (get_text_venv)) \
             (pad_str (get_text_git)) \
+            (pad_str (get_text_docker)) \
         ) \
         (get_text_prompt_end)
 
@@ -165,6 +174,7 @@ function fish_prompt --description 'Write out the prompt'
     functions -e get_text_cwd
     functions -e set_text_branch
     functions -e get_text_git
+    functions -e get_text_docker
     functions -e get_text_debug
     functions -e get_text_prompt_end
 end
